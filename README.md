@@ -4,8 +4,6 @@ In this repository we share examples on how to use cron-utils libraries.
 
 Feel free to collaborate, provide examples of your own and even push examples of bugs you found: when we fix it, the example remains.
 
-Check [our page](http://cronutils.com)! For stats about the project, you can visit our [OpenHUB profile](https://www.openhub.net/p/cron-utils).
-
 Support us donating once or by subscription through Flattr!
 
 [![Flattr this!](https://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=jmrozanec&url=https://github.com/jmrozanec/cron-utils)
@@ -17,3 +15,5 @@ You are welcome to visit and use the following cron-utils projects:
  * [htime](https://github.com/jmrozanec/htime): A Java library to make it easy for humans format a date. You no longer need to remember date time formatting chars: just write an example, and you will get the appropiate formatter.
  * [cron-utils-spring](https://github.com/jmrozanec/cron-utils-spring): A Java library to describe cron expressions in human readable language at Spring framework, using cron-utils.
  * [sisyphus](https://github.com/jmrozanec/cron-utils-sisyphus): Scala scheduler. As Sisyphus, will execute the task again and again, repeating the action for eternity.
+
+ You can also visit [our page](http://cronutils.com)!
