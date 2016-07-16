@@ -1,20 +1,8 @@
 # cron-utils examples
+
 In this repository we share examples on how to use cron-utils libraries.
 
 Feel free to collaborate, provide examples of your own and even push examples of bugs you found: when we fix it, the example remains.
-
-**Contribute & Support!**
-
-Contributions are welcome! You can contribute by
- * starring and/or Flattring this repo!
- * requesting or adding new features. Check our [roadmap](https://github.com/jmrozanec/cron-utils/wiki/Roadmap)!
- * enhancing existing code: ex.: provide more accurate description cases
- * testing
- * enhancing documentation
- * providing translations to support new locales
- * bringing suggestions and reporting bugs
- * spreading the word / telling us how you use it!
-
 
 Check [our page](http://cronutils.com)! For stats about the project, you can visit our [OpenHUB profile](https://www.openhub.net/p/cron-utils).
 
