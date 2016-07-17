@@ -17,22 +17,44 @@ import static com.cronutils.model.CronType.QUARTZ;
 import static com.cronutils.model.CronType.UNIX;
 import static com.cronutils.model.field.expression.FieldExpressionFactory.*;
 
+/**
+ * This class provides a main method to showcase common use cases for the cron-utils library.
+ */
 public class CronUtilsExamples {
 
     public static void main(String[] args) {
+        //Welcome to our cron-utils usage examples.
+        //In the following lines, we will outline the most important use cases you can leverage.
+
+        //First we want to create a Cron object. This can be done by building it or parsing some expression.
         //Using CronBuilder we can build cron expressions for any format.
         Cron quartzBuiltCronExpression = buildQuartzCronExpressionUsingCronBuilder();
         Cron unixBuiltCronExpression = buildUnixCronExpressionUsingCronBuilder();
+        //Otherwise CronParser will aid us on parsing some cron string expression into a Cron instance
+        String quartzCronExpression = "0 * * 1-3 * ? *";
+        CronParser quartzCronParser = new CronParser(CronDefinitionBuilder.instanceDefinitionFor(QUARTZ));
+        Cron parsedQuartzCronExpression = quartzCronParser.parse(quartzCronExpression);
 
         //Once an expression is represented as Cron object, we can get a cron string
         String quartzBuiltCronExpressionString = quartzBuiltCronExpression.asString();
         String unixBuiltCronExpressionString = unixBuiltCronExpression.asString();
+        //We can compare if the string we obtained, is the same to the original one!
+        System.out.println(
+                String.format("Original expression: '%s', After parsing to Cron: '%s'. Are the same? %s",
+                        quartzCronExpression,
+                        parsedQuartzCronExpression.asString(),
+                        quartzCronExpression.equals(parsedQuartzCronExpression.asString())
+                )
+        );
 
-        //We can also migrate to any other cron format
+        //What if we are migrating between cron formats?
+        //Ex.: we had everything in Linux, and now we provide a Quartz based scheduling service with a nice REST API.
+        //How can we perform the conversions, to remain equivalent while minimizing work?
+        //cron-utils provides a CronMapper for that: we can also migrate from/to any other cron format
         String fromQuartzToUnixString = CronMapper.fromQuartzToUnix().map(quartzBuiltCronExpression).asString();
         String fromUnixToQuartzString = CronMapper.fromUnixToQuartz().map(unixBuiltCronExpression).asString();
 
-        //We can now compare this expressions
+        //Lets compare this expressions
         System.out.println(
                 String.format("Original Quartz cron expression: '%s' Mapped from Unix: '%s'",
                         quartzBuiltCronExpressionString,
@@ -46,7 +68,7 @@ public class CronUtilsExamples {
                 )
         );
 
-        //Given the expressions are in different formats, are they equivalent?
+        //If we are not performing a migration, but just need to check if expressions are equivalent ...
         System.out.println(
                 String.format("Are both expressions (Quartz: '%s' vs. Unix: '%s') equivalent? %s",
                         quartzBuiltCronExpressionString, unixBuiltCronExpressionString,
@@ -54,18 +76,17 @@ public class CronUtilsExamples {
                 )
         );
 
-        //We can also get a Cron instance parsing some String cron expression
-        CronParser quartzCronParser = new CronParser(CronDefinitionBuilder.instanceDefinitionFor(QUARTZ));
-        Cron parsedQuartzCronExpression = quartzCronParser.parse(quartzBuiltCronExpressionString);
-
-        //we can validate expression is valid
+        //we can also check if a given expression is valid
         System.out.println(
                 String.format("If the following expression fails to validate, we get an exception! Validated expression is: '%s'",
                         parsedQuartzCronExpression.validate().asString()
                 )
         );
 
-        //In any case, given a Cron instance, we can ask for next/previous execution
+        //ok, up to now we just worked on cron domain. But what about execution times?
+        //We have a scheduling service, and would like to display previous/next execution
+        //or time from last or to next execution. Can cron-utils help us with that? Sure!
+        //Given a Cron instance, we can ask for next/previous execution
         DateTime now = DateTime.now();
         ExecutionTime executionTime = ExecutionTime.forCron(parsedQuartzCronExpression);
         System.out.println(
@@ -80,7 +101,7 @@ public class CronUtilsExamples {
                         parsedQuartzCronExpression.asString(), now, executionTime.nextExecution(now)
                 )
         );
-        //we can also request time from last / to next execution
+        //or request time from last / to next execution
         Duration timeFromLastExecution = executionTime.timeFromLastExecution(now);
         Duration timeToNextExecution = executionTime.timeToNextExecution(now);
         System.out.println(
@@ -104,6 +125,7 @@ public class CronUtilsExamples {
         System.out.println(
                 String.format("Quartz expression '%s' is described as '%s'", quartzBuiltCronExpression.asString(), quartzBuiltCronExpressionDescription)
         );
+
         //That's all! Join us on Gitter and send us feedback on how are you doing with cron-utils!
     }
 
