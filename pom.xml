@@ -57,7 +57,7 @@
     </distributionManagement>
 
     <properties>
-        <cronutils.version>4.1.1</cronutils.version>
+        <cronutils.version>5.0.0</cronutils.version>
         <htime.version>1.0.0</htime.version>
 
         <slf4j.version>1.7.12</slf4j.version>

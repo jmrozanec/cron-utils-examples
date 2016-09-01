@@ -8,9 +8,9 @@ import com.cronutils.model.definition.CronDefinition;
 import com.cronutils.model.definition.CronDefinitionBuilder;
 import com.cronutils.model.time.ExecutionTime;
 import com.cronutils.parser.CronParser;
-import org.joda.time.DateTime;
-import org.joda.time.Duration;
 
+import java.time.Duration;
+import java.time.ZonedDateTime;
 import java.util.Locale;
 
 import static com.cronutils.model.CronType.QUARTZ;
@@ -87,7 +87,7 @@ public class CronUtilsExamples {
         //We have a scheduling service, and would like to display previous/next execution
         //or time from last or to next execution. Can cron-utils help us with that? Sure!
         //Given a Cron instance, we can ask for next/previous execution
-        DateTime now = DateTime.now();
+        ZonedDateTime now = ZonedDateTime.now();
         ExecutionTime executionTime = ExecutionTime.forCron(parsedQuartzCronExpression);
         System.out.println(
                 String.format(
@@ -107,13 +107,13 @@ public class CronUtilsExamples {
         System.out.println(
                 String.format(
                         "Given the Quartz cron '%s' and reference date '%s', last execution was %s seconds ago",
-                        parsedQuartzCronExpression.asString(), now, timeFromLastExecution.toStandardSeconds().getSeconds()
+                        parsedQuartzCronExpression.asString(), now, timeFromLastExecution.getSeconds()
                 )
         );
         System.out.println(
                 String.format(
                         "Given the Quartz cron '%s' and reference date '%s', next execution will be in %s seconds",
-                        parsedQuartzCronExpression.asString(), now, timeToNextExecution.toStandardSeconds().getSeconds()
+                        parsedQuartzCronExpression.asString(), now, timeToNextExecution.getSeconds()
                 )
         );
 
