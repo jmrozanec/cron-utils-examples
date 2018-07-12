@@ -12,6 +12,7 @@ import com.cronutils.parser.CronParser;
 import java.time.Duration;
 import java.time.ZonedDateTime;
 import java.util.Locale;
+import java.util.Optional;
 
 import static com.cronutils.model.CronType.QUARTZ;
 import static com.cronutils.model.CronType.UNIX;
@@ -102,18 +103,18 @@ public class CronUtilsExamples {
                 )
         );
         //or request time from last / to next execution
-        Duration timeFromLastExecution = executionTime.timeFromLastExecution(now);
-        Duration timeToNextExecution = executionTime.timeToNextExecution(now);
+        Optional<Duration> timeFromLastExecution = executionTime.timeFromLastExecution(now);
+        Optional<Duration> timeToNextExecution = executionTime.timeToNextExecution(now);
         System.out.println(
                 String.format(
                         "Given the Quartz cron '%s' and reference date '%s', last execution was %s seconds ago",
-                        parsedQuartzCronExpression.asString(), now, timeFromLastExecution.getSeconds()
+                        parsedQuartzCronExpression.asString(), now, timeFromLastExecution.get().getSeconds()
                 )
         );
         System.out.println(
                 String.format(
                         "Given the Quartz cron '%s' and reference date '%s', next execution will be in %s seconds",
-                        parsedQuartzCronExpression.asString(), now, timeToNextExecution.getSeconds()
+                        parsedQuartzCronExpression.asString(), now, timeToNextExecution.get().getSeconds()
                 )
         );
 
@@ -143,8 +144,7 @@ public class CronUtilsExamples {
                 .withDayOfWeek()
                 .withIntMapping(7, 0) //we support non-standard non-zero-based numbers!
                 .supportsHash().supportsL().supportsW().and()
-                .withYear().and()
-                .lastFieldOptional()
+                .withYear().optional().and()
                 .instance();
     }
 
