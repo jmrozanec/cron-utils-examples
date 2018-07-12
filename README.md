@@ -3,7 +3,7 @@
 [![Gitter Chat](http://img.shields.io/badge/chat-online-brightgreen.svg)](https://gitter.im/jmrozanec/cron-utils)
 [![Flattr this!](https://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=jmrozanec&url=https://github.com/jmrozanec/cron-utils)
 
-In this repository we share examples on how to use cron-utils libraries.
+In this repository we share examples on how to use cron-utils libraries. We tag examples according to each release, so that you can find valid examples across all cron-utils releases. You can find them at github's [releases tab](https://github.com/jmrozanec/cron-utils-examples/releases).
 
 Feel free to collaborate, provide examples of your own and even push examples of bugs you found: when we fix it, the example remains.
 
