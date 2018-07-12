@@ -10,7 +10,7 @@
 
     <groupId>com.cronutils</groupId>
     <artifactId>cron-utils-examples</artifactId>
-    <version>0.1.0-SNAPSHOT</version>
+    <version>7.0.2-SNAPSHOT</version>
 
     <name>cron-utils-examples</name>
     <description>Usage examples for cron-utils libraries</description>
@@ -57,7 +57,7 @@
     </distributionManagement>
 
     <properties>
-        <cronutils.version>5.0.0</cronutils.version>
+        <cronutils.version>7.0.2</cronutils.version>
         <htime.version>1.0.0</htime.version>
 
         <slf4j.version>1.7.12</slf4j.version>
